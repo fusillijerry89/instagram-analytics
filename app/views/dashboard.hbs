@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Passport with Sequelize</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<h2>Dashboard</h2>
+<h5>Hurray! you are logged in.</h5>
+
+<form id="dashboard" name="test">
+  <label for="entry">Entry</label>
+  <input class="text" name="entry" type="text" />
+
+	<input class="btn" type="submit" value="Submit" />
+</form>
+
+<script>
+	var xhttp = new XMLHttpRequest();
+
+	$('#dashboard').click(function (ev) {
+		ev.preventDefault();
+
+		var val = $('#dashboard input[type="text"]').val();
+
+		xhttp.open('POST', '/test?data=' + val, true);
+		xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		xhttp.send();
+	});
+</script>
+
+<canvas id="myChart" width="200" height="200"></canvas>
+<script>
+var ctx = document.getElementById("myChart").getContext('2d');
+var myLineChart = new Chart(ctx, {
+    type: 'line',
+		data: [{
+        x: 10,
+        y: 20
+    }, {
+        x: 15,
+        y: 10
+    }],
+		options: {
+        scales: {
+            yAxes: [{
+                stacked: true
+            }]
+        }
+    }
+});
+</script>
+
+</body>
+</html>
