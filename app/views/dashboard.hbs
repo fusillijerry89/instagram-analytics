@@ -7,10 +7,9 @@
 </head>
 <body>
 <h2>Dashboard</h2>
-<h5>Hurray! you are logged in.</h5>
 
 <form id="dashboard" name="test">
-  <label for="entry">Entry</label>
+  <label for="entry">Spy On</label>
   <input class="text" name="entry" type="text" />
 
 	<input class="btn" type="submit" value="Submit" />
@@ -22,34 +21,43 @@
 	$('#dashboard').click(function (ev) {
 		ev.preventDefault();
 
-		var val = $('#dashboard input[type="text"]').val();
+		var spyonuser = $('#dashboard input[type="text"]').val();
 
-		xhttp.open('POST', '/test?data=' + val, true);
+		/* Put this into an event handler */
+		/* and emit an event here instead. */
+		xhttp.open('PUT', 'spyon/?user=' + spyonuser, true);
 		xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 		xhttp.send();
+		/* -- -- -- */
 	});
 </script>
 
+
 <canvas id="myChart" width="200" height="200"></canvas>
+
 <script>
-var ctx = document.getElementById("myChart").getContext('2d');
-var myLineChart = new Chart(ctx, {
-    type: 'line',
-		data: [{
-        x: 10,
-        y: 20
-    }, {
-        x: 15,
-        y: 10
-    }],
-		options: {
-        scales: {
-            yAxes: [{
-                stacked: true
-            }]
-        }
-    }
-});
+  var spyingOn = "{{spyingOn}}";
+  if (spyingOn) {
+		console.log("show spyingOn graph");
+		var ctx = document.getElementById("myChart").getContext('2d');
+		var myLineChart = new Chart(ctx, {
+		    type: 'line',
+				data: [{
+		        x: 10,
+		        y: 20
+		    }, {
+		        x: 15,
+		        y: 10
+		    }],
+				options: {
+		        scales: {
+		            yAxes: [{
+		                stacked: true
+		            }]
+		        }
+		    }
+		});
+	}
 </script>
 
 </body>

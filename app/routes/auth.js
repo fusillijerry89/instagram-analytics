@@ -1,6 +1,6 @@
 var authController = require('../controllers/authcontroller.js');
 
-module.exports = function (app,passport){
+module.exports = function (app, passport) {
 
   app.get('/signup', authController.signup);
 
@@ -22,8 +22,21 @@ module.exports = function (app,passport){
       console.log(req.query);
   });
 
-  app.get('/logout',authController.logout);
+  app.get('/logout', authController.logout);
 
+  app.put('/spyon', function (req, res, next) {
+      var json = {
+        account : req.user.email,
+        spyingon : req.query.user
+      };
+
+      // Make a PUT request to Sascha
+      xhttp.open('PUT', 'SASCHA_ENDPOINT', true);
+  		xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+  		xhttp.send("account=" + json.account + "&spyingon=" + json.spyingon);
+
+      // sends http://SASCHA_ENDPOINT/account=myemail@gmail.com&spyingon=justinbieber
+  });
 
   function isLoggedIn(req, res, next) {
       if ( req.isAuthenticated() ) {

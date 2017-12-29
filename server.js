@@ -23,7 +23,6 @@
     app.engine('hbs', exphbs({extname: '.hbs'}));
     app.set('view engine', '.hbs');
 
-
     app.get('/', function(req, res){
 	  res.send('Welcome to Passport with Sequelize');
 	});
@@ -46,7 +45,10 @@
   });
 
 	app.listen(5000, function(err){
-		if(!err)
-		console.log("Site is live"); else console.log(err)
-
-	});
+		if(!err) {
+		  console.log("Site is live");
+    }
+    else {
+      console.log(err);
+    }
+  });

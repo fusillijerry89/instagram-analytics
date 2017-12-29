@@ -46,11 +46,9 @@
       else
       {
         var userPassword = generateHash(password);
-        var data =
-        { email:email,
-        password:userPassword,
-        firstname: req.body.firstname,
-        lastname: req.body.lastname
+        var data = {
+          email:email,
+          password:userPassword,
         };
 
         User.create(data).then(function(newUser,created){

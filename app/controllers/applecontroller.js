@@ -7,6 +7,7 @@ exports.getApples = function (req,res){
 };
 
 exports.addApple = function (req,res){
+  // How do I add an apple to the db?
   var apple = Apple.build({
     type : 'macintosh',
     color : 'red'

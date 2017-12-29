@@ -4,6 +4,7 @@
     "password": "zsAeaJrF4PCyyw8s",
     "database": "analytics",
     "host": "database2.botsource.org",
+    "port": "3306",
     "dialect": "mysql"
   },
   "test": {
